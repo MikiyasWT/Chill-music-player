@@ -1,0 +1,38 @@
+
+.musicPlayer {
+    
+    min-height: 40vh;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.timeControl {
+    width:50%;
+    
+    .icons {
+        display:flex;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 1rem 2rem;
+
+        svg {
+            cursor: pointer;
+        }
+    }
+
+    .inputPicker{
+        display: flex;
+        justify-content: space-around;
+        input {
+            width: 100%;
+            padding: 1rem 0rem;
+        }
+        h3{
+            padding: 1rem;
+        }
+    }
+
+    
+}
