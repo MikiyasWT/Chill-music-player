@@ -10,7 +10,7 @@ export  const Player = ({currentSong,setIsPlaying,isPlaying}) =>{
 
   const audioRef = useRef(null)
   const playSongHandler = () => {
-    console.log(isPlaying)
+    
     if(!isPlaying){
       audioRef.current.play();
       setIsPlaying(!isPlaying)
@@ -36,7 +36,7 @@ export  const Player = ({currentSong,setIsPlaying,isPlaying}) =>{
   }
 
   const onDragHandler = (e) => {
-    audioRef.current = e.target.value;
+    audioRef.current.currentTime = e.target.value;
     setSongInfo({...songInfo,currentTime:e.target.value})
   }
     return(
@@ -46,7 +46,7 @@ export  const Player = ({currentSong,setIsPlaying,isPlaying}) =>{
                 <h3>{getTimeHandler(songInfo.currentTime)}</h3>  
                 <input 
                   min={0} 
-                  max={songInfo.duration} 
+                  max={songInfo.duration || 0} 
                   onChange={onDragHandler}
                   value={songInfo.currentTime} 
                   type="range" />

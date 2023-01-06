@@ -2,7 +2,7 @@
 
 export const Song = ({currentSong}) => {
    
-
+   console.log(currentSong.active)
     return (
         <div className="songContainer">
             <img src={currentSong.cover} alt={currentSong.name}></img>
