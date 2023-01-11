@@ -3,31 +3,6 @@ import {v4 as uuidv4} from "uuid"
 function chillMusic(){
 
   return [
-    // {
-    //     name:"abebe",
-    //     url:"src/assets/album1.jpg",
-    //     id:uuidv4(),
-    //     active:true
-    // },
-    // {
-    //     name:"kebede",
-    //     url:"src/assets/album2.jpg",
-    //     id:uuidv4(),
-    //     active:true
-    // },
-    // {
-    //     name:"tesfaye",
-    //     url:"src/assets/album3.jpg",
-    //     id:uuidv4(),
-    //     active:true
-    // },
-    // {
-    //     name:"eyasu",
-    //     url:"src/assets/album4.jpg",
-    //     id:uuidv4(),
-    //     active:true
-    // }
-
 
     {
     name:"Joy boy",    

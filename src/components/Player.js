@@ -1,16 +1,13 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPlay,faPause,faAngleLeft,faAngleRight } from "@fortawesome/free-solid-svg-icons"
 import React,{useRef,useState} from "react"
-export  const Player = ({currentSong,setIsPlaying,isPlaying}) =>{
+export  const Player = ({audioRef,setSongInfo,songInfo,currentSong,setIsPlaying,isPlaying}) =>{
   
-  const [songInfo,setSongInfo] = useState({
-    currentTime:0,
-    duration:0
-  })
+ 
 
-  const audioRef = useRef(null)
+ 
   const playSongHandler = () => {
-    
+    console.log(isPlaying)
     if(!isPlaying){
       audioRef.current.play();
       setIsPlaying(!isPlaying)
@@ -29,11 +26,7 @@ export  const Player = ({currentSong,setIsPlaying,isPlaying}) =>{
     )
   }
 
-  const timeUpdateHander = (e) =>{
-    const current = e.target.currentTime
-    const duration = e.target.duration
-    setSongInfo({...songInfo,currentTime:current,duration})
-  }
+ 
 
   const onDragHandler = (e) => {
     audioRef.current.currentTime = e.target.value;
@@ -58,13 +51,7 @@ export  const Player = ({currentSong,setIsPlaying,isPlaying}) =>{
               <FontAwesomeIcon className="goForward" icon={faAngleRight}/>
               </div>
             </div>
-          <audio 
-            onTimeUpdate={timeUpdateHander}
-            onLoadedMetadata={timeUpdateHander}
-            src={currentSong.audio}
-            ref={audioRef}>
-
-          </audio>
+        
        </div>
     )
 }

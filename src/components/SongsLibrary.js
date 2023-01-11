@@ -1,6 +1,8 @@
 
 
-const SongsLibrary = ({song,songs,setSongs,setCurrentSong,isPlaying,setIsPlaying,id}) =>{
+const SongsLibrary = ({audioRef,song,songs,setSongs,setCurrentSong,isPlaying,setIsPlaying,id}) =>{
+
+   
 
     const songSelectHandler = () => {
         
@@ -24,7 +26,17 @@ const SongsLibrary = ({song,songs,setSongs,setCurrentSong,isPlaying,setIsPlaying
         })
 
         setSongs(newSongs);
+        
+            const isPlayingPromise = audioRef.current.play();
 
+            if(isPlayingPromise !==undefined){
+              isPlayingPromise.then((audio) => {
+                audioRef.current.play()
+                setIsPlaying(true)
+              })
+                
+            }
+        
 
     }
 
