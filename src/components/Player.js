@@ -1,7 +1,8 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPlay,faPause,faAngleLeft,faAngleRight } from "@fortawesome/free-solid-svg-icons"
-import React,{useRef,useState} from "react"
-export  const Player = ({audioRef,setSongInfo,songInfo,currentSong,setIsPlaying,isPlaying}) =>{
+import React,{useEffect} from "react"
+import { playAudio } from "../lib/util"
+export  const Player = ({audioRef,setSongInfo,songInfo,currentSong,setCurrentSong,setIsPlaying,isPlaying,songs,setSongs}) =>{
   
  
 
@@ -32,6 +33,52 @@ export  const Player = ({audioRef,setSongInfo,songInfo,currentSong,setIsPlaying,
     audioRef.current.currentTime = e.target.value;
     setSongInfo({...songInfo,currentTime:e.target.value})
   }
+
+
+
+
+  const skipHandler = (direction) => {
+    let currentSongIndex = songs.findIndex((song) => song.id === currentSong.id)
+
+    if(direction === 'go-forward'){
+      setCurrentSong(songs[(currentSongIndex + 1) % songs.length]);
+      
+    }    
+    else if(direction === 'go-back'){
+      if((currentSongIndex - 1) < 0){
+          setCurrentSong(songs[songs.length - 1])
+          playAudio(audioRef,setIsPlaying)
+          return
+        }
+
+      setCurrentSong(songs[(currentSongIndex - 1) % songs.length]);
+
+    }
+
+    playAudio(audioRef,setIsPlaying)
+  }
+   
+  useEffect(()=>{
+    const newSongs = songs.map((song) => {
+      if(song.id === currentSong.id){
+          return {
+              ...song,
+              active:true,   
+          }
+         
+       
+      }
+      else {
+          return {
+              ...song,
+              active:false,   
+          }
+      }
+  })
+
+  setSongs(newSongs);
+  },[currentSong])
+ 
     return(
         <div className="musicPlayer">
             <div className="timeControl">
@@ -43,12 +90,12 @@ export  const Player = ({audioRef,setSongInfo,songInfo,currentSong,setIsPlaying,
                   onChange={onDragHandler}
                   value={songInfo.currentTime} 
                   type="range" />
-                <h3>{getTimeHandler(songInfo.duration)}</h3>
+                <h3>{songInfo.duration ? getTimeHandler(songInfo.duration): '0:00'}</h3>
               </div>
              <div className="icons">
-              <FontAwesomeIcon className="goBack" icon={faAngleLeft}/>
+              <FontAwesomeIcon onClick={()=>skipHandler('go-back')} className="goBack" icon={faAngleLeft}/>
               <FontAwesomeIcon className="play" onClick={playSongHandler} icon={isPlaying?faPause:faPlay} />
-              <FontAwesomeIcon className="goForward" icon={faAngleRight}/>
+              <FontAwesomeIcon onClick={()=>skipHandler('go-forward')} className="goForward" icon={faAngleRight}/>
               </div>
             </div>
         
