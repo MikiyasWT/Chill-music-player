@@ -6,6 +6,7 @@
      height: 100%;
      overflow-y: scroll;
      box-shadow: 2px 2px 50px gray;
+     opacity: 1;
 }
 
 
@@ -19,7 +20,8 @@
     }
 
     &:hover {
-        background: rgb(153, 104, 202);
+        background-color: rgba(10, 179, 18, 0.637);
+        
     }
 }
 
@@ -60,5 +62,5 @@ background: transparent;
 
 
 .selected {
-    background-color: rgb(170, 65, 153);
+    background: rgb(153, 104, 202);
 }

@@ -4,6 +4,7 @@ import { Song } from "./components/Song";
 import "./styles/app.scss"
 import data from "./lib/util"
 import Library from "./components/Library";
+import Nav from "./components/Nav";
 
 function App() {
   const [songs,setSongs] = useState(data())
@@ -14,6 +15,7 @@ function App() {
     currentTime:0,
     duration:0
   })
+  const [toggle,setToggle] = useState(true)
 
 
   const timeUpdateHander = (e) =>{
@@ -25,6 +27,10 @@ function App() {
  
   return (
     <div className="App">
+      <Nav 
+       toggle={toggle}
+       setToggle={setToggle}
+       />
        <audio 
             onTimeUpdate={timeUpdateHander}
             onLoadedMetadata={timeUpdateHander}
@@ -43,6 +49,8 @@ function App() {
          />
      <Library
       songs={songs}
+      toggle={toggle}
+      setToggle={setToggle}
       setSongs={setSongs}
       currentSong={currentSong}
       setCurrentSong={setCurrentSong}
