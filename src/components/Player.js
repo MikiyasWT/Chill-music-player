@@ -2,13 +2,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPlay,faPause,faAngleLeft,faAngleRight } from "@fortawesome/free-solid-svg-icons"
 import React,{useEffect} from "react"
 import { playAudio } from "../lib/util"
-export  const Player = ({audioRef,setSongInfo,songInfo,currentSong,setCurrentSong,setIsPlaying,isPlaying,songs,setSongs}) =>{
+export  const Player = ({audioRef,setSongInfo,songInfo,currentSong,setCurrentSong,setIsPlaying,isPlaying,songs,setSongs,toggle}) =>{
   
  
 
  
   const playSongHandler = () => {
-    console.log(isPlaying)
+    
     if(!isPlaying){
       audioRef.current.play();
       setIsPlaying(!isPlaying)
@@ -37,37 +37,63 @@ export  const Player = ({audioRef,setSongInfo,songInfo,currentSong,setCurrentSon
 
 
 
-  const skipHandler = (direction) => {
+  const skipHandler = async (direction) => {
     let currentSongIndex = songs.findIndex((song) => song.id === currentSong.id)
 
     if(direction === 'go-forward'){
-      setCurrentSong(songs[(currentSongIndex + 1) % songs.length]);
+      await setCurrentSong({...songs[(currentSongIndex + 1) % songs.length],active:true});
+      nextPrevSongHandler({...songs[(currentSongIndex + 1) % songs.length]})
       
     }    
     else if(direction === 'go-back'){
       if((currentSongIndex - 1) < 0){
           setCurrentSong(songs[songs.length - 1])
+          nextPrevSongHandler({...songs[(currentSongIndex + 1) % songs.length]})
+          
           playAudio(audioRef,setIsPlaying)
           return
         }
 
       setCurrentSong(songs[(currentSongIndex - 1) % songs.length]);
-
+      nextPrevSongHandler(songs[(currentSongIndex - 1) % songs.length])
+          
     }
 
     playAudio(audioRef,setIsPlaying)
   }
    
-  useEffect(()=>{
+
+  // useEffect removed to avoid repetitive rerendering
+  // useEffect(()=>{
+  //   const newSongs = songs.map((song) => {
+  //     if(song.id === currentSong.id){
+  //         return {
+  //             ...song,
+  //             active:true,   
+  //         }     
+  //     }
+
+  //     else {
+  //         return {
+  //             ...song,
+  //             active:false,   
+  //         }
+  //     }
+  // })
+
+  // setSongs(newSongs);
+  // },[currentSong])
+
+
+  const nextPrevSongHandler = ({nextOrPrevSong}) => {
     const newSongs = songs.map((song) => {
       if(song.id === currentSong.id){
           return {
               ...song,
               active:true,   
-          }
-         
-       
+          }     
       }
+
       else {
           return {
               ...song,
@@ -77,10 +103,10 @@ export  const Player = ({audioRef,setSongInfo,songInfo,currentSong,setCurrentSon
   })
 
   setSongs(newSongs);
-  },[currentSong])
+  }
  
     return(
-        <div className="musicPlayer">
+      <div className={`musicPlayer ${toggle ? "toggled":""}`}>
             <div className="timeControl">
               <div className="inputPicker">
                 <h3>{getTimeHandler(songInfo.currentTime)}</h3>  
@@ -92,13 +118,13 @@ export  const Player = ({audioRef,setSongInfo,songInfo,currentSong,setCurrentSon
                   type="range" />
                 <h3>{songInfo.duration ? getTimeHandler(songInfo.duration): '0:00'}</h3>
               </div>
+
              <div className="icons">
-              <FontAwesomeIcon onClick={()=>skipHandler('go-back')} className="goBack" icon={faAngleLeft}/>
-              <FontAwesomeIcon className="play" onClick={playSongHandler} icon={isPlaying?faPause:faPlay} />
-              <FontAwesomeIcon onClick={()=>skipHandler('go-forward')} className="goForward" icon={faAngleRight}/>
-              </div>
-            </div>
-        
+                <FontAwesomeIcon onClick={()=>skipHandler('go-back')} className="goBack" icon={faAngleLeft}/>
+                <FontAwesomeIcon className="play" onClick={playSongHandler} icon={isPlaying?faPause:faPlay} />
+                <FontAwesomeIcon onClick={()=>skipHandler('go-forward')} className="goForward" icon={faAngleRight} />
+             </div>
+            </div>       
        </div>
     )
 }

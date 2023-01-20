@@ -1,12 +1,13 @@
 
 .musicPlayer {
-    
-    min-height: 40vh;
+    display: relative;
+    min-height: 20vh;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
     justify-content: center;
     margin-left: 10rem;
+    overflow: hidden;
 }
 
 .timeControl {
@@ -36,4 +37,22 @@
     }
 
     
+}
+
+
+
+@media screen and (max-width:768px) {
+    .musicPlayer{
+        width: 60%;
+        margin-left: 5rem;
+    }
+
+    .timeControl{
+        width: 100%;
+    }
+
+    .toggled {
+        display: none;
+        overflow-y: hidden;
+    }
 }

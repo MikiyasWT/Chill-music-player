@@ -8,7 +8,7 @@ const  Library = ({audioRef,songs,setSongs,currentSong,setCurrentSong,isPlaying,
         {
             toggle &&    
             <div className="library">
-            <h3>Library</h3>
+            
                 <div className="library-songs ">
                     {
                         songs.map(song => (

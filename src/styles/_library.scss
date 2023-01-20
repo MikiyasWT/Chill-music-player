@@ -1,12 +1,14 @@
 .library {
-     position: fixed;
+     position: absolute;
+     display: flex;
+     flex-direction: column;
      top: 0;
      left:0;
-     width: 22rem;
+     width: 30%;
      height: 100%;
      overflow-y: scroll;
      box-shadow: 2px 2px 50px gray;
-     opacity: 1;
+     
      
 }
 
@@ -64,4 +66,15 @@ background: transparent;
 
 .selected {
     background: rgb(153, 104, 202);
+}
+
+
+
+
+@media screen and (max-width:768px) {
+    .library{
+        margin-top: 3rem;
+        width: 100%;
+        
+    }
 }

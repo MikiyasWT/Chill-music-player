@@ -2,6 +2,7 @@
     margin:0;
     padding: 0;
     box-sizing:border-box;
+    
 }
 
 h1,h2,h3{
@@ -16,6 +17,16 @@ h3,h4 {
     color: rgb(100, 100, 100)
 }
 
+.App {
+    transition: all 0.5s ease;
+    
+}
+
+
+.toggeld {
+    margin-left: 10%;
+    overflow-y: hidden;
+}
 @import "./player";
 @import "./song";
 @import "./library";

@@ -16,3 +16,22 @@
         }
         }
 }
+
+
+
+
+
+
+@media screen and (max-width:768px) {
+  .nav {
+    margin: 0.5rem 1.5rem;
+    display: flex;
+    flex-direction: row;
+    overflow-y: hidden;
+    button {
+      
+      z-index: 10;
+      
+    }
+  } 
+}
