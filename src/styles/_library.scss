@@ -1,0 +1,124 @@
+.library {
+     position: absolute;
+     display: flex;
+     flex-direction: column;
+     top: 0;
+     left:0;
+     width: 30%;
+     height: 100%;
+     overflow-y: scroll;
+     box-shadow: 2px 2px 50px gray;
+     
+     
+}
+
+
+.library-song {
+    display: flex;
+    cursor: pointer;    
+    align-items: center;
+    padding: 1rem 2rem 1rem 2rem;
+    img {
+        width: 30%;
+    }
+
+    &:hover {
+        background-color: rgba(10, 179, 18, 0.637);
+        
+    }
+
+    
+
+        svg {
+            cursor: pointer;
+            padding: 1rem 2rem;
+            height: 2rem;
+        }
+
+     .icon {
+        right: 0;
+        margin-left: 4rem;
+     }   
+
+// to animate wave on side panel while song is playing
+        .fa-beat {
+            animation:fa-beat 5s ease infinite;
+          }
+          @keyframes fa-beat {
+            0% {
+              transform:scale(1);
+            }
+            5% {
+              transform:scale(1.25);
+            }
+            20% {
+              transform:scale(1);
+            }
+            30% {
+              transform:scale(1);
+            }
+            35% {
+              transform:scale(1.25);
+            }
+            50% {
+              transform:scale(1);
+            }
+            55% {
+              transform:scale(1.25);
+            }
+            70% {
+              transform:scale(1);
+            }
+          }
+}
+
+
+.song-description { 
+   font-family: 'Lato', sans-serif;
+   padding-left: 1rem;
+   h3 {
+    font-size: 1rem;
+   }  
+   h4{
+    font-size: 0.7rem;
+   }
+}
+
+
+//this will change scrollbar width and color on mozila
+*{
+    scrollbar-width: thin;
+    scrollbar-color: rgba(155,155,155,0.5) transparent;
+}
+
+//to customize scrollbar on other browsers
+*::-webkit-scrollbar{
+width: 5px;
+}
+
+*::-webkit-scrollbar-track{
+background: transparent;
+}
+
+*::-webkit-scrollbar-thumb{
+
+    background-color: rgba(155,155,155,0.5);
+    border-radius: 20px;
+    border:transparent
+}
+
+
+.selected {
+    background: rgb(153, 104, 202);
+}
+
+
+
+
+@media screen and (max-width:768px) {
+    .library{
+        margin-top: 3rem;
+        width: 100%;
+        
+    }
+}

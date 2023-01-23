@@ -1,0 +1,37 @@
+
+.nav {
+    margin: 1rem 20rem 1rem 25rem;
+    //margin: top,right,bottom,left;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+    button {
+        
+        padding: 8px 5px;
+        border-radius: 10%;
+        border: none;
+        &:hover {
+          background: rgb(153, 104, 202);
+        }
+        }
+}
+
+
+
+
+
+
+@media screen and (max-width:768px) {
+  .nav {
+    margin: 0.5rem 1.5rem;
+    display: flex;
+    flex-direction: row;
+    overflow-y: hidden;
+    button {
+      
+      z-index: 10;
+      
+    }
+  } 
+}

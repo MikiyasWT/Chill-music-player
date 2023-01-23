@@ -1,0 +1,58 @@
+
+.musicPlayer {
+    display: relative;
+    min-height: 20vh;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    margin-left: 10rem;
+    overflow: hidden;
+}
+
+.timeControl {
+    width:50%;
+    
+    .icons {
+        display:flex;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 1rem 2rem;
+
+        svg {
+            cursor: pointer;
+        }
+    }
+
+    .inputPicker{
+        display: flex;
+        justify-content: space-around;
+        input {
+            width: 100%;
+            padding: 1rem 0rem;
+        }
+        h3{
+            padding: 1rem;
+        }
+    }
+
+    
+}
+
+
+
+@media screen and (max-width:768px) {
+    .musicPlayer{
+        width: 60%;
+        margin-left: 5rem;
+    }
+
+    .timeControl{
+        width: 100%;
+    }
+
+    .toggled {
+        display: none;
+        overflow-y: hidden;
+    }
+}
